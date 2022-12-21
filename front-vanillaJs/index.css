@@ -1,0 +1,229 @@
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: #182230;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App-logo {
+  height: 3rem;
+  pointer-events: none;
+  margin-left: 1rem;
+}
+
+.App-header {
+  position: fixed;
+  min-height: 10vh;
+  width: 100vw;
+  /* background-color: #282c34; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.increment-layout {
+  height: calc(100%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.increment-container {
+  height: 20rem;
+  width: 30rem;
+  padding: 2rem;
+  background-color: antiquewhite;
+  border-radius: 1rem;
+  background: linear-gradient(314.83deg, #3246ff 13.96%, #e74e4e 85%);
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.increment-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.increment-number-value {
+  font-size: 6rem;
+  font-weight: bolder;
+  display: none;
+}
+
+.increment-button-wrapper {
+  display: flex;
+}
+
+.increment-number-button {
+  width: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid white;
+  background: white;
+  width: content;
+  height: 3rem;
+  border-radius: 6rem;
+  color: black;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin: 0 1rem;
+}
+
+.increment-number-button:hover {
+  transform: translateY(-2px);
+  box-shadow: rgba(255, 255, 255, 0.508) 0px 4px;
+}
+
+.increment-number-button:active {
+  transform: translateY(0px);
+  box-shadow: rgba(255, 255, 255, 0.508) 0px 1px;
+}
+
+.increment-number-button-get {
+  border: 2px solid transparent;
+  width: 10rem;
+  height: 3rem;
+  padding: 0.5rem 1.5rem;
+  background-color: transparent;
+  border-radius: 6rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin: 0 1rem;
+}
+
+.increment-number-button-get:hover {
+  font-size: medium;
+  font-weight: bolder;
+}
+
+.increment-number-button-get:active {
+  font-size: small;
+
+  font-weight: bold;
+}
+.disabled {
+  background-color: rgb(70, 70, 70);
+  border: 2px solid gray;
+  color: gray;
+}
+
+.disabled:hover {
+  transform: unset;
+  box-shadow: unset;
+  cursor: not-allowed;
+}
+
+.loader-number {
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg) scale(0.2);
+    border-radius: 10%;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.5);
+    border-radius: 50%;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.2);
+    border-radius: 10%;
+  }
+}
+
+.loader-button {
+  width: 12rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid rgb(95, 95, 95);
+  /* background: white; */
+  width: content;
+  height: 3rem;
+  padding: 0.5rem 0.7rem 0.5rem 1.9rem;
+  background-color: gray;
+
+  border-radius: 6rem;
+  color: black;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  margin: 0 1rem;
+  color: #6e6767;
+  font-size: small;
+  display: none;
+  cursor: not-allowed;
+}
+
+.loader {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(
+    0deg,
+    rgba(107, 107, 107, 0.774) 33%,
+    #dbdbdb 100%
+  );
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  margin-left: 1rem;
+}
+
+.loader::after {
+  content: "";
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #263238;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

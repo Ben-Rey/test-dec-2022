@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increment</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <script type='text/javascript' src="https://cdn.jsdelivr.net/npm/@massalabs/massa-web3@1.11.0/bundle.js"></script>
+
+    <header class="App-header">
+        <img src="./logo.webp" class="App-logo" alt="logo" />
+    </header>
+    <div class="App">
+        <div class="increment-container">
+            <span class="increment-title">Increment smart-contract</span>
+            <span id="num" class="increment-number-value">0</span>
+            <span id="num-loader" class="loader-number"></span>
+            <div class="increment-button-wrapper">
+                <button id="increment" class="increment-number-button" onclick="increment(2)">
+                    Increment by 2
+                </button>
+                <div id="increment-load" class="loader-button">
+                    Increment by 2
+                    <span class="loader"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
