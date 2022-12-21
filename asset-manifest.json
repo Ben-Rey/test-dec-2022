@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/%7Brepo-name%7D/static/css/main.d63c3310.css",
+    "main.js": "/%7Brepo-name%7D/static/js/main.b0b24682.js",
+    "static/js/787.76a05682.chunk.js": "/%7Brepo-name%7D/static/js/787.76a05682.chunk.js",
+    "static/media/logo.webp": "/%7Brepo-name%7D/static/media/logo.989057b63b5ebc706a36.webp",
+    "index.html": "/%7Brepo-name%7D/index.html",
+    "main.d63c3310.css.map": "/%7Brepo-name%7D/static/css/main.d63c3310.css.map",
+    "main.b0b24682.js.map": "/%7Brepo-name%7D/static/js/main.b0b24682.js.map",
+    "787.76a05682.chunk.js.map": "/%7Brepo-name%7D/static/js/787.76a05682.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d63c3310.css",
+    "static/js/main.b0b24682.js"
+  ]
+}
