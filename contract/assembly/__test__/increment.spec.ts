@@ -30,8 +30,9 @@ describe("Increment Function", (): i32 => {
 });
 
 function assertNumIsEqual(num: f64, equalTo: f64): boolean {
+    // error(num.toString() + ", " + equalTo.toString() + " was expected.");
     if (num !== equalTo) {
-        assert(num === equalTo, `FAILURE :: Num should be equal to ${equalTo} => num is equal to ${num}`);
+        error(`FAILURE :: Num should be equal to ${equalTo} => num is equal to ${num}`);
         return false;
     }
     return true;
