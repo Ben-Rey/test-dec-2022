@@ -1,5 +1,5 @@
 .increment-layout {
-  height: calc(100%);
+  /* height: calc(100%); */
   width: 100%;
   display: flex;
   justify-content: center;

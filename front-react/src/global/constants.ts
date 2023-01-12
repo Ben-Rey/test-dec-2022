@@ -7,4 +7,7 @@ export const BASE_ACCOUNT_ADDRESS: string =
 export const SMART_CONTRACT_ADDRESS: string =
   process.env.REACT_APP_SMART_CONTRACT_ADDRESS!;
 
+export const SMART_CONTRACT_TOKEN_ADDRESS: string =
+  process.env.REACT_APP_SMART_CONTRACT_TOKEN_ADDRESS!;
+
 export const INCREMENT_NUMBER = 2;

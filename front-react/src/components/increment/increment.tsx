@@ -6,7 +6,6 @@ import "./increment.css";
 
 const Increment = () => {
   const { increment, loading, num } = useIncrement();
-
   return (
     <div className="increment-layout">
       <div className="increment-container">
@@ -23,12 +22,8 @@ const Increment = () => {
           >
             {loading ? <Loader /> : "Increment by 2"}
           </button>
-          {/* <button className={`increment-number-button-get`} onClick={getValue}>
-            Get Value
-          </button> */}
         </div>
       </div>
-      );
     </div>
   );
 };

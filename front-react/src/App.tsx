@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import Balance from "./components/balance/balance";
 import Increment from "./components/increment/increment";
 import massa from "./logo.webp";
 
@@ -9,7 +10,10 @@ const App = () => {
       <header className="App-header">
         <img src={massa} className="App-logo" alt="logo" />
       </header>
-      <Increment />
+      <div className="App-wrapper">
+        <Balance />
+        <Increment />
+      </div>
     </div>
   );
 };

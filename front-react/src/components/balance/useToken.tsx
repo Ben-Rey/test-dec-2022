@@ -11,25 +11,21 @@ import {
 import { useState, useCallback, useEffect } from "react";
 import {
   BASE_ACCOUNT_SECRET_KEY,
-  SMART_CONTRACT_ADDRESS,
   BASE_ACCOUNT_ADDRESS,
+  SMART_CONTRACT_TOKEN_ADDRESS,
 } from "../../global/constants";
 import useAsyncEffect from "../../utils/asyncEffect";
 
-interface useIncrementReturn {
-  increment: Function;
-  fetchNumber: Function;
-  loading: boolean;
-  num: string | null;
+interface useTokenReturn {
+  balance: string;
+  approve: (num: number) => Promise<void>;
 }
 
 // The purpose of this hooks is just to separate the logic from the ui and have cleaner components
-export function useIncrement(): useIncrementReturn {
+export function useToken(): useTokenReturn {
   const [web3Client, setWeb3Client] = useState<Client | null>(null);
   const [baseAccount, setBaseAccount] = useState<IAccount | null>();
-  const [incrementOperationId, setIncrementOperationId] = useState<string>("");
-
-  const [num, setNum] = useState<string | null>(null);
+  const [balance, setBalance] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   useAsyncEffect(async () => {
@@ -39,8 +35,6 @@ export function useIncrement(): useIncrementReturn {
       );
       setBaseAccount(baseAccount);
       const web3Client = await ClientFactory.createDefaultClient(
-        // local: "http://127.0.0.1:33032",
-        // DefaultProviderUrls.TESTNET,
         "http://127.0.0.1:33032" as DefaultProviderUrls,
         false,
         baseAccount
@@ -52,36 +46,30 @@ export function useIncrement(): useIncrementReturn {
     }
   }, []);
 
-  const fetchNumber = useCallback(async () => {
+  const fetchBalance = useCallback(async () => {
     let args = new Args();
     if (web3Client) {
       const readTxData = await web3Client.smartContracts().readSmartContract({
         fee: 0,
         maxGas: 200000,
         simulatedGasPrice: 0,
-        targetAddress: SMART_CONTRACT_ADDRESS,
-        targetFunction: "get_value",
-        parameter: args.serialize(),
+        targetAddress: SMART_CONTRACT_TOKEN_ADDRESS,
+        targetFunction: "balanceOf",
+        parameter: args.addString(BASE_ACCOUNT_ADDRESS).serialize(),
         callerAddress: BASE_ACCOUNT_ADDRESS,
       } as IReadData);
 
       if (readTxData[0]?.output_events[0]?.data) {
-        if (num !== readTxData[0].output_events[0].data) {
+        if (balance !== readTxData[0].output_events[0].data) {
           setLoading(false);
         }
-        setNum((_) => readTxData[0].output_events[0].data);
+
+        setBalance((_) => readTxData[0].output_events[0].data);
       }
     }
-  }, [web3Client, num]);
+  }, [web3Client, balance]);
 
-  useEffect(() => {
-    const interval = setInterval(() => fetchNumber(), 1000);
-    return () => clearInterval(interval);
-  }, [fetchNumber]);
-
-  const increment = async (num: number) => {
-    if (loading) return;
-
+  const approve = async (num: number) => {
     let args = new Args();
     args.addI32(BigInt(num));
 
@@ -92,25 +80,24 @@ export function useIncrement(): useIncrementReturn {
           maxGas: 200000,
           coins: 10,
           simulatedGasPrice: 0,
-          targetAddress: SMART_CONTRACT_ADDRESS,
-          functionName: "increment",
+          targetAddress: SMART_CONTRACT_TOKEN_ADDRESS,
+          functionName: "increaseAllowance",
           parameter: args.serialize(),
           callerAddress: BASE_ACCOUNT_ADDRESS,
         } as ICallData,
         baseAccount!
       );
 
-      if (readTxData[0] !== incrementOperationId) {
-        setIncrementOperationId(readTxData[0]);
-        setLoading(true);
-      }
+      // if (readTxData[0] !== incrementOperationId) {
+      //   setIncrementOperationId(readTxData[0]);
+      //   setLoading(true);
+      // }
     }
   };
 
-  return {
-    increment,
-    fetchNumber,
-    loading,
-    num,
-  };
+  useEffect(() => {
+    fetchBalance();
+  }, [fetchBalance]);
+
+  return { balance, approve };
 }

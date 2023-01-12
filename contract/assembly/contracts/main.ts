@@ -13,6 +13,7 @@ export function init(serializedArgs: StaticArray<u8>): void {
     // Check if the owner is the one who call the function
     assert(_assertOwner(Context.caller()), "Only Owner allowed");
     // Store the first value of the counter - 0
+    // Array of byte
     Storage.set(toBytes("number"), toBytes("0"));
     // Store a new boolean telling that the contract has been initialized
     Storage.set(toBytes(INITIALIZED_KEY), new Args().add(true).serialize());
